@@ -1,0 +1,8 @@
+.*
+/client
+/client.html
+/doc
+/dev
+/inc/bootstrap.php
+/test
+/test.php

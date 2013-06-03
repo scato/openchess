@@ -1,0 +1,67 @@
+<%
+
+var types = {
+    'king': 'K',
+    'queen': 'Q',
+    'bishop': 'B',
+    'knight': 'N',
+    'rook': 'R',
+    'pawn': 'P'
+};
+
+if(game.white.id === player.id) {
+    var ranks = [8, 7, 6, 5, 4, 3, 2, 1];
+    var files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+} else {
+    var ranks = [1, 2, 3, 4, 5, 6, 7, 8];
+    var files = ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+}
+
+%>
+<dl>
+	<dt>You:</dt><dd><%= player.name %></dd>
+	<% if(game.white.id === player.id) { %>
+		<dt>Opponent:</dt><dd><%= game.black.name %></dd>
+	<% } else { %>
+		<dt>Opponent:</dt><dd><%= game.white.name %></dd>
+	<% } %>
+</dl>
+<% var sqr = "dark"; %>
+<% function squareColor() { sqr = sqr === "dark" ? "light" : "dark"; return sqr; } %>
+<table class="board">
+    <tr>
+        <th></th>
+        <% files.forEach(function(file) { %>
+            <th><%= file %></th>
+        <% }); %>
+        <th></th>
+    </tr>
+    <% ranks.forEach(function(rank) { %>
+        <tr>
+            <th><%= rank %></th>
+            <% files.forEach(function(file) { %>
+                <% var piece = game.findPieceByPosition(file, rank); %>
+                <% if(piece) { %>
+                    <% var color = piece.color.replace(/^PIECE_COLOR_/, '').toLowerCase(); %>
+                    <% var type = piece.type.replace(/^PIECE_TYPE_/, '').toLowerCase(); %>
+                    <td id="<%= file %><%= rank %>" class="<%= squareColor() %>">
+                        <span class="<%= color %>">
+                            <%= types[type] %>
+                        </span>
+                    </td>
+                <% } else { %>
+                    <td id="<%= file %><%= rank %>" class="<%= squareColor() %>"></td>
+                <% } %>
+            <% }); %>
+            <th><%= rank %></th>
+            <% squareColor(); %>
+        </tr>
+    <% }); %>
+    <tr>
+        <th></th>
+        <% files.forEach(function(file) { %>
+            <th><%= file %></th>
+        <% }); %>
+        <th></th>
+    </tr>
+</table>

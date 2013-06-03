@@ -1,0 +1,41 @@
+table.board {
+    border-collapse: collapse;
+}
+
+table.board td, table.board th {
+    font-family: courier new, courier, monotype;
+    font-size: 10pt;
+    font-weight: bold;
+    
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table.board td.dark {
+    background-color: #c96;
+}
+
+table.board td.light {
+    background-color: #fc9;
+}
+
+table.board td span.white {
+    color: white;
+}
+
+table.board td span.black {
+    color: black;
+}
+
+table.board td.target, table.board td.destination {
+    cursor: pointer;
+    background-color: #f99;
+}
+
+table.board td.active {
+    cursor: pointer;
+    background-color: #99f;
+}
